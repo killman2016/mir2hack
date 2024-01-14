@@ -13,12 +13,11 @@ long find_bytes_in_buf(
     {
 		match = 1;
 		for (j = 0; j <slen; j++) {
+			if (bytes[j] == 0x3F ) continue;
+				//0x3F '?' is for any value
 			if (buf[i+j] != bytes[j]) {
-				if (bytes[j] != 0x3F ) {
-					//0x3F '?' is for any value
-					match = 0;
-					break;
-				}
+				match = 0;
+				break;
 			}
 		}
 		if (match) {
