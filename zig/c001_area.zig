@@ -3,10 +3,11 @@ const print = std.debug.print;
 const PI: f32 = 3.14;
 
 pub fn main() !void {
-    const fr: f32 = 4; //@floatFromInt(ur);
+    const fr: f32 = @floatFromInt(4);
     const aoc: f32 = PI * fr * fr;
+    const coc: f32 = 2 * PI * fr;
 
-    print("radius = {} area = {}\n", .{ fr, aoc });
+    print("radius = {d:.2} area = {d:.2} circleference = {d:.2}\n", .{ fr, aoc, coc });
 
     while (true) {
         const ur: f32 = get_number(f32) catch continue;
