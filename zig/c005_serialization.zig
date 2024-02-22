@@ -12,6 +12,26 @@ const NumericBoolean = struct {
     }
 };
 
+pub const Raw = struct {
+    value: ?[]const u8,
+
+    pub fn init(value: ?[]const u8) Raw {
+        return .{ .value = value };
+    }
+
+    pub fn jsonStringify(self: Raw, out: anytype) !void {
+        const json = if (self.value) |value| value else "null";
+        return out.print("{s}", .{json});
+    }
+};
+
+// try std.json.stringify(.{
+//   .id = row.text(0),
+//   .title = row.nullableText(1),
+//   .tags = Raw.init(row.nullableText(2)),
+//   // ...
+// }, .{}, writer);
+
 pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     //defer _ = gpa.deinit();
